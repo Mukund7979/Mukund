@@ -1,8 +1,8 @@
 export const formatCurrency = (n) => {
-  if (n === null || n === undefined || isNaN(n)) return "$0.00";
+  if (n === null || n === undefined || isNaN(n)) return "₹0.00";
   const sign = n < 0 ? "-" : "";
   const abs = Math.abs(n);
-  return `${sign}$${abs.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  return `${sign}₹${abs.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 };
 
 export const formatDate = (iso) => {

@@ -53,7 +53,7 @@ export default function Insights() {
             <BarChart data={summary.monthly_trend}>
               <CartesianGrid strokeDasharray="2 4" stroke="hsl(240 4% 16%)" vertical={false} />
               <XAxis dataKey="label" stroke="hsl(240 5% 65%)" fontSize={11} tickLine={false} axisLine={false} />
-              <YAxis stroke="hsl(240 5% 65%)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
+              <YAxis stroke="hsl(240 5% 65%)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `₹${v}`} />
               <Tooltip
                 contentStyle={{
                   background: "hsl(0 0% 7%)",

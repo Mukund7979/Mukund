@@ -196,7 +196,7 @@ export default function Budgets() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="budget-amount" className="text-xs tracking-widest uppercase text-muted-foreground">
-                Monthly Amount ($)
+                Monthly Amount (₹)
               </Label>
               <Input
                 id="budget-amount"
@@ -206,7 +206,7 @@ export default function Budgets() {
                 min="0.01"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="500.00"
+                placeholder="5000.00"
                 className="rounded-none bg-transparent font-mono"
                 required
               />

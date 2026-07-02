@@ -156,7 +156,7 @@ export default function ExpenseFormDialog({
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="expense-amount" className="text-xs tracking-widest uppercase text-muted-foreground">
-                Amount ($)
+                Amount (₹)
               </Label>
               <Input
                 id="expense-amount"
