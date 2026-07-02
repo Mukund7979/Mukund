@@ -1,0 +1,130 @@
+{
+  "theme_and_archetype": {
+    "domain": "Finance / Expense Tracker",
+    "theme": "Dark",
+    "archetype": "Archetype 4 (Swiss & High-Contrast) + Archetype 5 (Luxury)",
+    "description": "A 'Godly' high-end dark mode fintech dashboard. Uses a near-black canvas (#0A0A0A) to reduce eye strain, high-contrast white typography for primary metrics, and vivid semantic colors (green/red) exclusively for financial movements. The aesthetic is 'Swiss Noir'—sharp 0px borders, dense data presentation, and extreme precision."
+  },
+  "typography": {
+    "font_imports": [
+      "@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');"
+    ],
+    "families": {
+      "headings": "Outfit, sans-serif",
+      "body": "Manrope, sans-serif",
+      "data_numbers": "'JetBrains Mono', monospace"
+    },
+    "scale_rules": {
+      "h1": "text-4xl sm:text-5xl tracking-tight font-light",
+      "h2": "text-2xl sm:text-3xl tracking-tight font-medium",
+      "h3": "text-xl sm:text-2xl font-medium",
+      "h4": "text-lg sm:text-xl font-medium",
+      "body": "text-sm sm:text-base leading-relaxed text-muted-foreground",
+      "data_large": "text-4xl sm:text-5xl font-mono tracking-tighter",
+      "data_medium": "text-xl sm:text-2xl font-mono tracking-tight",
+      "data_small": "text-sm font-mono",
+      "labels": "text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground"
+    }
+  },
+  "colors": {
+    "philosophy": "Dark-First Canvas. Color is used strictly for function, not decoration. White is the primary action color. Green and Red are strictly reserved for financial changes (profit/loss).",
+    "css_variables": {
+      "--background": "0 0% 4%",
+      "--foreground": "0 0% 98%",
+      "--card": "0 0% 7%",
+      "--card-foreground": "0 0% 98%",
+      "--popover": "0 0% 7%",
+      "--popover-foreground": "0 0% 98%",
+      "--primary": "0 0% 98%",
+      "--primary-foreground": "0 0% 4%",
+      "--secondary": "240 4% 16%",
+      "--secondary-foreground": "0 0% 98%",
+      "--muted": "240 4% 16%",
+      "--muted-foreground": "240 5% 65%",
+      "--accent": "240 4% 16%",
+      "--accent-foreground": "0 0% 98%",
+      "--destructive": "348 83% 47%",
+      "--destructive-foreground": "0 0% 98%",
+      "--border": "240 4% 16%",
+      "--input": "240 4% 16%",
+      "--ring": "0 0% 98%",
+      "--chart-1": "142 71% 45%",
+      "--chart-2": "240 5% 65%",
+      "--chart-3": "240 4% 16%",
+      "--chart-4": "348 83% 47%",
+      "--chart-5": "0 0% 98%",
+      "--radius": "0px"
+    },
+    "tailwind_extensions": {
+      "colors": {
+        "profit": "hsl(142 71% 45%)",
+        "loss": "hsl(348 83% 47%)",
+        "warning": "hsl(38 92% 50%)",
+        "obsidian": "#0A0A0A",
+        "surface": "#121212"
+      }
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "The 'Control Room' Grid. Dense, data-rich, yet readable. Every pixel utilized with intention.",
+    "page_structure": "Sidebar or Top-Nav layout. Main content area must have generous padding (p-6 md:p-12).",
+    "grid_system": {
+      "base": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6",
+      "items": {
+        "north_star_metric": "col-span-1 lg:col-span-1",
+        "main_chart": "col-span-1 md:col-span-2 lg:col-span-3",
+        "data_table": "col-span-1 md:col-span-3 lg:col-span-4",
+        "side_panel": "col-span-1 row-span-2"
+      }
+    },
+    "alignment": "Numbers and currencies MUST be right-aligned in tables. Labels and text left-aligned. Optical alignment over geometric."
+  },
+  "components_strategy": {
+    "cards": "Flat surfaces (bg-card), sharp 0px corners, 1px solid border (border-border). NO heavy drop shadows, use inner shadows or borders to define edges.",
+    "headers": "Crystal Glassmorphism if scrolling (bg-background/80 backdrop-blur-xl border-b border-border), or solid flat if fixed.",
+    "buttons": "Primary CTAs are stark white (bg-primary text-primary-foreground). Secondary are muted outlines. No gradients on buttons. Hover states explicitly define background and text.",
+    "tables": "Dense. Row borders only (border-b border-border/50), no column dividers. Hover state on rows: bg-secondary/50. Font-mono for all numeric data.",
+    "charts": "Use Recharts wrapped in Shadcn Chart. Line charts should use vibrant neon accents (green/red) with gradient fill under the line (opacity 0.1 to 0) to ground the data.",
+    "forms_inputs": "Shadcn inputs. bg-transparent, sharp corners, border-border. Focus state: ring-1 ring-primary border-primary.",
+    "data_testid_requirement": "CRITICAL: All interactive elements (buttons, links, form inputs, toggles, row actions) MUST have a `data-testid` attribute using kebab-case and role-based naming (e.g., `data-testid='add-expense-submit-button'`, `data-testid='expense-amount-input'`)."
+  },
+  "motion_and_interaction": {
+    "philosophy": "Fast, precise, mechanical.",
+    "hover_states": "Must be high-contrast. Cards lift slightly (-translate-y-[1px]) or borders glow/lighten. Text colors must remain visible.",
+    "page_transitions": "Staggered fade-in and slide-up (translate-y-2 to 0) for dashboard widgets upon load.",
+    "accessibility": "Respect prefers-reduced-motion. Ensure focus rings are high contrast (white ring on black background)."
+  },
+  "icons_and_assets": {
+    "library": "@phosphor-icons/react",
+    "installation": "yarn add @phosphor-icons/react",
+    "usage": "Use 'Duotone' or 'Regular' weight. Keep them sharp and minimal. Replace Lucide where possible for a more premium feel."
+  },
+  "media": {
+    "backgrounds": [
+      {
+        "url": "https://images.pexels.com/photos/13129482/pexels-photo-13129482.jpeg",
+        "category": "auth_or_hero_background",
+        "description": "Monochrome geometric abstract background with polygonal shapes creating a 3D effect. Use with a heavy dark overlay (bg-background/90) as a subtle texture for empty states or onboarding."
+      }
+    ],
+    "placeholders": [
+      {
+        "url": "https://images.unsplash.com/photo-1615800098779-1be32e60cca3",
+        "category": "receipt_placeholder",
+        "description": "White wall paint with black shadow. Use as a minimalist placeholder texture for empty receipt image uploads."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "INSTALL DEPENDENCIES: Run `yarn add @phosphor-icons/react recharts date-fns` before starting any development.",
+    "CSS INJECTION: Overwrite the entirety of `/app/frontend/src/index.css`. Insert the @import url for Google Fonts (Outfit, Manrope, JetBrains Mono) at the top. Replace the :root and .dark variables with the exact HSL strings defined in `css_variables` here. Make sure .dark is the default or enforce it on the html/body tag.",
+    "TAILWIND CONFIG: Update `/app/frontend/tailwind.config.js`. Extend the theme with `colors: { profit: 'hsl(142 71% 45%)', loss: 'hsl(348 83% 47%)', warning: 'hsl(38 92% 50%)', obsidian: '#0A0A0A', surface: '#121212' }`. Set the font families: `sans: ['Manrope', 'sans-serif']`, `heading: ['Outfit', 'sans-serif']`, `mono: ['JetBrains Mono', 'monospace']`.",
+    "LAYOUT & UI ARCHITECTURE: Implement a full-screen dashboard layout. Sidebar nav is preferred. Use the defined 'Control Room' grid system (grid-cols-1 md:grid-cols-4).",
+    "TYPOGRAPHY EXECUTION: All financial figures, balances, and dates MUST use `font-mono`. Use the custom semantic colors `text-profit` for positive flows and `text-loss` or default foreground for expenses.",
+    "COMPONENT OVERRIDES: Customize all Shadcn primitives to use `rounded-none`. The aesthetic must be sharp, aggressive, and highly precise. Do not use generic soft shadows; rely on 1px solid borders (border-border).",
+    "BUSINESS LOGIC (RULE-BASED CATEGORIZATION): Build a simple dictionary/switch function mapping keywords (e.g., 'uber', 'lyft' -> 'Transport'; 'starbucks', 'mcdonalds' -> 'Food') and run it automatically onChange or onBlur of the expense description input.",
+    "BUDGET ALERTS WIDGET: Create a visual progress bar. Dynamically apply Tailwind classes based on percentage: < 80% use standard foreground/accent, > 80% use `bg-warning`, > 100% use `bg-destructive`.",
+    "TESTING IDs (CRITICAL): Ensure absolutely every input, select, button, chart container, and table row has a descriptive `data-testid` attribute (e.g., `data-testid='expense-list-row-1'`). Do not skip this step.",
+    "DATA PERSISTENCE: Use LocalStorage to persist the single user's expenses, budgets, and categories since there is no backend authentication required."
+  ]
+}
