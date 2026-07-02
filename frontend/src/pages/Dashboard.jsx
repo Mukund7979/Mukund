@@ -44,7 +44,7 @@ export default function Dashboard() {
 
   const changeUp = summary && summary.change_pct > 0;
   const now = new Date();
-  const monthLabel = now.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  const monthLabel = now.toLocaleDateString("en-IN", { month: "long", year: "numeric" });
 
   return (
     <div className="space-y-6 animate-in-up" data-testid="dashboard-page">
@@ -57,7 +57,7 @@ export default function Dashboard() {
           <h1 className="font-heading text-4xl sm:text-5xl font-light tracking-tight mt-2" data-testid="dashboard-title">
             Financial Pulse
           </h1>
-          <p className="text-sm text-muted-foreground mt-1">Track every dollar. Own every decision.</p>
+          <p className="text-sm text-muted-foreground mt-1">Track every rupee. Own every decision.</p>
         </div>
         <Button
           data-testid="dashboard-add-expense-button"

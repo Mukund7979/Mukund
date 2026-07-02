@@ -9,7 +9,7 @@ export const formatDate = (iso) => {
   if (!iso) return "";
   const d = new Date(iso);
   if (isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" });
+  return d.toLocaleDateString("en-IN", { month: "short", day: "2-digit", year: "numeric" });
 };
 
 export const todayIso = () => new Date().toISOString().slice(0, 10);
