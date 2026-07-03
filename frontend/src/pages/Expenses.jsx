@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Plus, MagnifyingGlass, PencilSimple, Trash, Image as ImageIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,7 +35,7 @@ export default function Expenses() {
   const [deleteId, setDeleteId] = useState(null);
   const [previewReceipt, setPreviewReceipt] = useState(null);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const params = {};
@@ -46,7 +46,7 @@ export default function Expenses() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [category, search]);
 
   useEffect(() => {
     fetchCategories().then(setCategories);
@@ -55,8 +55,7 @@ export default function Expenses() {
   useEffect(() => {
     const t = setTimeout(load, 250);
     return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, search]);
+  }, [load]);
 
   const total = expenses.reduce((s, e) => s + e.amount, 0);
 

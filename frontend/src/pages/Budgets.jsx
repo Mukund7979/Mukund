@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Plus, Trash, WarningCircle } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,7 +35,7 @@ export default function Budgets() {
   const [amount, setAmount] = useState("");
   const [saving, setSaving] = useState(false);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const [s, c] = await Promise.all([getSummary(), fetchCategories()]);
@@ -44,9 +44,9 @@ export default function Budgets() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => { load(); }, [load]);
 
   const usedCategories = new Set(budgetStatus.map((b) => b.category));
   const availableCategories = categories.filter((c) => !usedCategories.has(c));

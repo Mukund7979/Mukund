@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Plus, ArrowUpRight, ArrowDownRight, Receipt, Wallet } from "@phosphor-icons/react";
 import {
   AreaChart,
@@ -21,13 +21,21 @@ import { fetchCategories, getSummary } from "@/lib/api";
 import { formatCurrency, formatDate, colorForCategory } from "@/lib/format";
 import { Link } from "react-router-dom";
 
+const TOOLTIP_STYLE = {
+  background: "hsl(0 0% 7%)",
+  border: "1px solid hsl(240 4% 16%)",
+  borderRadius: 0,
+  fontFamily: "JetBrains Mono, monospace",
+  fontSize: 12,
+};
+
 export default function Dashboard() {
   const [summary, setSummary] = useState(null);
   const [categories, setCategories] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const [s, c] = await Promise.all([getSummary(), fetchCategories()]);
@@ -36,11 +44,11 @@ export default function Dashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     load();
-  }, []);
+  }, [load]);
 
   const changeUp = summary && summary.change_pct > 0;
   const now = new Date();
@@ -134,13 +142,7 @@ export default function Dashboard() {
                     <XAxis dataKey="label" stroke="hsl(240 5% 65%)" fontSize={11} tickLine={false} axisLine={false} />
                     <YAxis stroke="hsl(240 5% 65%)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `₹${v}`} />
                     <Tooltip
-                      contentStyle={{
-                        background: "hsl(0 0% 7%)",
-                        border: "1px solid hsl(240 4% 16%)",
-                        borderRadius: 0,
-                        fontFamily: "JetBrains Mono, monospace",
-                        fontSize: 12,
-                      }}
+                      contentStyle={TOOLTIP_STYLE}
                       formatter={(v) => [formatCurrency(v), "Total"]}
                     />
                     <Area
@@ -176,18 +178,12 @@ export default function Dashboard() {
                         paddingAngle={1}
                         stroke="none"
                       >
-                        {summary.category_breakdown.map((entry, i) => (
-                          <Cell key={i} fill={colorForCategory(entry.category)} />
+                        {summary.category_breakdown.map((entry) => (
+                          <Cell key={entry.category} fill={colorForCategory(entry.category)} />
                         ))}
                       </Pie>
                       <Tooltip
-                        contentStyle={{
-                          background: "hsl(0 0% 7%)",
-                          border: "1px solid hsl(240 4% 16%)",
-                          borderRadius: 0,
-                          fontFamily: "JetBrains Mono, monospace",
-                          fontSize: 12,
-                        }}
+                        contentStyle={TOOLTIP_STYLE}
                         formatter={(v) => formatCurrency(v)}
                       />
                     </PieChart>

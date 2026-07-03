@@ -68,7 +68,7 @@ export default function ExpenseFormDialog({
       setCategory(cat);
       setAutoCategorized(true);
     } catch (e) {
-      // silent
+      console.warn("Auto-categorize failed", e);
     }
   };
 

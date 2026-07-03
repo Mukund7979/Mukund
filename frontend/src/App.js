@@ -8,6 +8,16 @@ import Expenses from "@/pages/Expenses";
 import Budgets from "@/pages/Budgets";
 import Insights from "@/pages/Insights";
 
+const TOAST_OPTIONS = {
+  style: {
+    background: "hsl(0 0% 7%)",
+    border: "1px solid hsl(240 4% 16%)",
+    borderRadius: 0,
+    color: "hsl(0 0% 98%)",
+    fontFamily: "Manrope, sans-serif",
+  },
+};
+
 function Shell({ children }) {
   return (
     <div className="min-h-screen bg-background text-foreground grain-overlay">
@@ -36,15 +46,7 @@ function App() {
       <Toaster
         theme="dark"
         position="top-right"
-        toastOptions={{
-          style: {
-            background: "hsl(0 0% 7%)",
-            border: "1px solid hsl(240 4% 16%)",
-            borderRadius: 0,
-            color: "hsl(0 0% 98%)",
-            fontFamily: "Manrope, sans-serif",
-          },
-        }}
+        toastOptions={TOAST_OPTIONS}
       />
     </BrowserRouter>
   );

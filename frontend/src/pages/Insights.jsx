@@ -3,12 +3,27 @@ import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Toolti
 import { getSummary } from "@/lib/api";
 import { formatCurrency, colorForCategory } from "@/lib/format";
 
+const TOOLTIP_STYLE = {
+  background: "hsl(0 0% 7%)",
+  border: "1px solid hsl(240 4% 16%)",
+  borderRadius: 0,
+  fontFamily: "JetBrains Mono, monospace",
+  fontSize: 12,
+};
+const BAR_CURSOR = { fill: "hsl(240 4% 12%)" };
+
 export default function Insights() {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getSummary().then((s) => { setSummary(s); setLoading(false); });
+    let mounted = true;
+    getSummary().then((s) => {
+      if (!mounted) return;
+      setSummary(s);
+      setLoading(false);
+    });
+    return () => { mounted = false; };
   }, []);
 
   if (loading || !summary) {
@@ -55,14 +70,8 @@ export default function Insights() {
               <XAxis dataKey="label" stroke="hsl(240 5% 65%)" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="hsl(240 5% 65%)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `₹${v}`} />
               <Tooltip
-                contentStyle={{
-                  background: "hsl(0 0% 7%)",
-                  border: "1px solid hsl(240 4% 16%)",
-                  borderRadius: 0,
-                  fontFamily: "JetBrains Mono, monospace",
-                  fontSize: 12,
-                }}
-                cursor={{ fill: "hsl(240 4% 12%)" }}
+                contentStyle={TOOLTIP_STYLE}
+                cursor={BAR_CURSOR}
                 formatter={(v) => [formatCurrency(v), "Total"]}
               />
               <Bar dataKey="total" fill="hsl(0 0% 98%)" />
